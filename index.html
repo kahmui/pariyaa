@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 تولدت مبارک پریا</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-glow: rgba(255, 180, 200, 0.15);
+            --accent-pink: #ff6b9d;
+            --accent-gold: #ffd700;
+            --accent-magenta: #c850c0;
+            --accent-purple: #9b59b6;
+            --accent-rose: #ff4d6d;
+            --accent-peach: #ffb4a2;
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Vazirmatn', system-ui, sans-serif;
+            background: #08060f;
+            color: var(--text-primary);
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-scene {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 20% 50%, #1a0a1e 0%, #08060f 50%);
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: blobFloat 20s ease-in-out infinite;
+        }
+
+        .bg-blob:nth-child(1) {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, var(--accent-magenta), transparent 70%);
+            top: -10%; left: -5%;
+            animation-delay: 0s;
+            animation-duration: 22s;
+        }
+        .bg-blob:nth-child(2) {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--accent-pink), transparent 70%);
+            top: 50%; right: -10%;
+            animation-delay: -5s;
+            animation-duration: 18s;
+        }
+        .bg-blob:nth-child(3) {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+            bottom: -5%; left: 30%;
+            animation-delay: -10s;
+            animation-duration: 25s;
+        }
+        .bg-blob:nth-child(4) {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--accent-rose), transparent 70%);
+            top: 20%; right: 20%;
+            animation-delay: -15s;
+            animation-duration: 20s;
+        }
+        .bg-blob:nth-child(5) {
+            width: 450px; height: 450px;
+            background: radial-gradient(circle, var(--accent-peach), transparent 70%);
+            bottom: 20%; right: 40%;
+            animation-delay: -8s;
+            animation-duration: 24s;
+            opacity: 0.3;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(80px, -60px) scale(1.1); }
+            50% { transform: translate(-40px, 80px) scale(0.9); }
+            75% { transform: translate(60px, 40px) scale(1.05); }
+        }
+
+        /* ===== NOISE OVERLAY ===== */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+        }
+
+        /* ===== PARTICLE CANVAS ===== */
+        #particleCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ===== SHATTER CANVAS ===== */
+        #shatterCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* ===== PHASE 1: INTRO GLASS CARD ===== */
+        .intro-phase {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .intro-phase.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-glass {
+            position: relative;
+            width: min(420px, 88vw);
+            padding: 60px 48px;
+            text-align: center;
+            border-radius: 32px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 0 80px rgba(200, 80, 192, 0.08),
+                0 0 160px rgba(255, 107, 157, 0.05),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -1px 0 rgba(255,255,255,0.03),
+                0 32px 64px rgba(0,0,0,0.4);
+            animation: glassFloat 6s ease-in-out infinite, glassBreathe 4s ease-in-out infinite;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .intro-glass:hover {
+            transform: scale(1.02);
+            box-shadow:
+                0 0 120px rgba(200, 80, 192, 0.15),
+                0 0 200px rgba(255, 107, 157, 0.1),
+                inset 0 1px 0 rgba(255,255,255,0.15),
+                inset 0 -1px 0 rgba(255,255,255,0.05),
+                0 32px 64px rgba(0,0,0,0.4);
+        }
+
+        /* Liquid glass reflection layers */
+        .intro-glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                rgba(255,255,255,0.03) 10%,
+                transparent 20%,
+                rgba(255,255,255,0.02) 30%,
+                transparent 40%,
+                rgba(255,255,255,0.03) 50%,
+                transparent 60%,
+                rgba(255,255,255,0.02) 70%,
+                transparent 80%,
+                rgba(255,255,255,0.03) 90%,
+                transparent 100%
+            );
+            animation: liquidRotate 15s linear infinite;
+            pointer-events: none;
+        }
+
+        .intro-glass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+            animation: glassShine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glassFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-12px) rotateX(0.5deg); }
+        }
+
+        @keyframes glassBreathe {
+            0%, 100% { box-shadow:
+                0 0 80px rgba(200, 80, 192, 0.08),
+                0 0 160px rgba(255, 107, 157, 0.05),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                inset 0 -1px 0 rgba(255,255,255,0.03),
+                0 32px 64px rgba(0,0,0,0.4);
+            }
+            50% { box-shadow:
+                0 0 100px rgba(200, 80, 192, 0.12),
+                0 0 180px rgba(255, 107, 157, 0.08),
+                inset 0 1px 0 rgba(255,255,255,0.14),
+                inset 0 -1px 0 rgba(255,255,255,0.05),
+                0 32px 64px rgba(0,0,0,0.4);
+            }
+        }
+
+        @keyframes liquidRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glassShine {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+
+        /* Liquid border effect */
+        .liquid-border {
+            position: absolute;
+            inset: -2px;
+            border-radius: 34px;
+            background: conic-gradient(
+                from var(--border-angle, 0deg),
+                var(--accent-magenta),
+                var(--accent-pink),
+                var(--accent-gold),
+                var(--accent-peach),
+                var(--accent-rose),
+                var(--accent-purple),
+                var(--accent-magenta)
+            );
+            z-index: -1;
+            animation: rotateBorder 6s linear infinite;
+            opacity: 0.5;
+            filter: blur(4px);
+        }
+
+        @property --border-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes rotateBorder {
+            to { --border-angle: 360deg; }
+        }
+
+        /* Inner glass content glow */
+        .inner-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .intro-title {
+            position: relative;
+            font-size: clamp(28px, 7vw, 48px);
+            font-weight: 300;
+            letter-spacing: 2px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            text-shadow: 0 0 40px rgba(255, 107, 157, 0.3);
+            margin-bottom: 24px;
+        }
+
+        .intro-subtitle {
+            position: relative;
+            font-size: clamp(13px, 3.5vw, 16px);
+            font-weight: 400;
+            color: var(--text-secondary);
+            animation: subtlePulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== PHASE 2: MAIN CONTENT ===== */
+        .main-phase {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease 0.5s;
+            overflow-y: auto;
+        }
+
+        .main-phase.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .main-glass {
+            position: relative;
+            width: min(580px, 92vw);
+            padding: 50px 44px;
+            border-radius: 36px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(50px) saturate(220%);
+            -webkit-backdrop-filter: blur(50px) saturate(220%);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 0 100px rgba(200, 80, 192, 0.1),
+                0 0 200px rgba(255, 107, 157, 0.06),
+                inset 0 1px 0 rgba(255,255,255,0.12),
+                inset 0 -1px 0 rgba(255,255,255,0.04),
+                0 40px 80px rgba(0,0,0,0.5);
+            animation: mainGlassFloat 8s ease-in-out infinite;
+            transform: translateY(40px) scale(0.95);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .main-phase.visible .main-glass {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Main card liquid effects */
+        .main-glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 45deg,
+                transparent 0%,
+                rgba(255,215,0,0.02) 15%,
+                transparent 30%,
+                rgba(255,107,157,0.03) 45%,
+                transparent 60%,
+                rgba(200,80,192,0.02) 75%,
+                transparent 90%
+            );
+            animation: liquidRotate 20s linear infinite;
+            pointer-events: none;
+        }
+
+        .main-glass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            animation: glassShine 6s ease-in-out infinite;
+            animation-delay: 2s;
+            pointer-events: none;
+        }
+
+        @keyframes mainGlassFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Main card liquid border */
+        .main-liquid-border {
+            position: absolute;
+            inset: -2px;
+            border-radius: 38px;
+            background: conic-gradient(
+                from 180deg,
+                var(--accent-gold),
+                var(--accent-pink),
+                var(--accent-magenta),
+                var(--accent-rose),
+                var(--accent-peach),
+                var(--accent-purple),
+                var(--accent-gold)
+            );
+            z-index: -1;
+            animation: rotateBorder 8s linear infinite;
+            opacity: 0.4;
+            filter: blur(6px);
+        }
+
+        .main-inner-glow {
+            position: absolute;
+            inset: 0;
+            border-radius: 36px;
+            background:
+                radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 90%, rgba(200,80,192,0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* ===== NUMBER 18 ===== */
+        .number-container {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        .number-18 {
+            font-size: clamp(80px, 20vw, 140px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-peach), var(--accent-pink), var(--accent-gold));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldShimmer 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.4)) drop-shadow(0 0 60px rgba(255, 107, 157, 0.2));
+            user-select: none;
+        }
+
+        @keyframes goldShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ===== MAIN CONTENT TEXT ===== */
+        .main-title {
+            position: relative;
+            font-size: clamp(22px, 5.5vw, 32px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 32px;
+            margin-top: 20px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.2);
+        }
+
+        .main-body {
+            position: relative;
+            font-size: clamp(14px, 3.8vw, 18px);
+            font-weight: 300;
+            line-height: 2.4;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 36px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-signature {
+            position: relative;
+            font-size: clamp(13px, 3.2vw, 16px);
+            font-weight: 500;
+            text-align: center;
+            color: var(--accent-peach);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-shadow: 0 0 20px rgba(255, 180, 162, 0.3);
+        }
+
+        /* ===== CONFETTI CANVAS ===== */
+        #confettiCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        /* ===== MUSIC TOGGLE ===== */
+        .music-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 100;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .music-btn:hover {
+            background: rgba(255,255,255,0.12);
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: musicPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 0 rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 12px rgba(255, 107, 157, 0); }
+        }
+
+        /* ===== RIPPLE EFFECT ON CLICK ===== */
+        .ripple-container {
+            position: fixed;
+            inset: 0;
+            z-index: 8;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            animation: rippleExpand 2s ease-out forwards;
+        }
+
+        @keyframes rippleExpand {
+            0% {
+                width: 0; height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200vmax; height: 200vmax;
+                opacity: 0;
+            }
+        }
+
+        /* ===== FLOATING HEARTS ===== */
+        .floating-heart {
+            position: fixed;
+            z-index: 25;
+            font-size: 24px;
+            opacity: 0;
+            animation: floatHeart 4s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0) rotate(0deg);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-40px) scale(1) rotate(-15deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-300px) scale(0.5) rotate(25deg);
+            }
+        }
+
+        /* ===== SHATTER PIECES ===== */
+        .shard {
+            position: fixed;
+            z-index: 45;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            pointer-events: none;
+            animation: shardFall var(--fall-duration, 2s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes shardFall {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx, 100px), var(--ty, 800px)) rotate(var(--rot, 180deg)) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* ===== DROPLET EFFECT ===== */
+        .droplet {
+            position: fixed;
+            z-index: 44;
+            width: 6px;
+            height: 6px;
+            border-radius: 50% 50% 50% 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            animation: drip var(--drip-duration, 2.5s) ease-in forwards;
+        }
+
+        @keyframes drip {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(var(--drip-y, 500px)) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* ===== LIGHT STREAKS ===== */
+        .light-streak {
+            position: fixed;
+            z-index: 6;
+            pointer-events: none;
+            width: 2px;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.06), transparent);
+            animation: streakFade 6s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes streakFade {
+            0%, 100% { opacity: 0; transform: translateY(-100px); }
+            50% { opacity: 1; transform: translateY(100px); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .intro-glass {
+                padding: 44px 28px;
+                border-radius: 24px;
+            }
+            .main-glass {
+                padding: 40px 24px;
+                border-radius: 28px;
+            }
+            .number-18 {
+                top: -20px;
+            }
+            .number-container {
+                top: -24px;
+            }
+        }
+
+        /* ===== LOADING STATE ===== */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #08060f;
+            transition: opacity 0.8s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-orb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-pink), var(--accent-magenta), var(--accent-gold), var(--accent-pink));
+            animation: orbSpin 1s linear infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes orbSpin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-orb"></div>
+    </div>
+
+    <!-- Background Scene -->
+    <div class="bg-scene">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <div class="noise-overlay"></div>
+
+    <!-- Light Streaks -->
+    <div class="light-streak" style="left: 10%; top: 0; animation-delay: 0s;"></div>
+    <div class="light-streak" style="left: 30%; top: 0; animation-delay: 2s;"></div>
+    <div class="light-streak" style="left: 55%; top: 0; animation-delay: 4s;"></div>
+    <div class="light-streak" style="left: 75%; top: 0; animation-delay: 1s;"></div>
+    <div class="light-streak" style="left: 90%; top: 0; animation-delay: 3s;"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Shatter Canvas -->
+    <canvas id="shatterCanvas"></canvas>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Ripple Container -->
+    <div class="ripple-container" id="rippleContainer"></div>
+
+    <!-- ===== PHASE 1: INTRO ===== -->
+    <div class="intro-phase" id="introPhase">
+        <div class="intro-glass" id="introGlass">
+            <div class="liquid-border"></div>
+            <div class="inner-glow"></div>
+            <div class="intro-title">برای پریا...</div>
+            <div class="intro-subtitle">روی شیشه کلیک کن</div>
+        </div>
+    </div>
+
+    <!-- ===== PHASE 2: MAIN ===== -->
+    <div class="main-phase" id="mainPhase">
+        <div class="main-glass">
+            <div class="main-liquid-border"></div>
+            <div class="main-inner-glow"></div>
+            <div class="number-container">
+                <div class="number-18">۱۸</div>
+            </div>
+            <div class="main-title">پریای عزیزم، تولدت مبارک</div>
+            <div class="main-body">
+                هجده سالگی‌ات، آغاز فصلی‌ست که در آن، ذهن و قلب با هم می‌رقصند.
+                <br>
+                تو که راه روانشناسی را انتخاب کرده‌ای، می‌دانی که زیباترین چیز دنیا، عمق یک روح است.
+                <br>
+                آرزو می‌کنم در این سال جدید از زندگی‌ات، آرامش مثل یک دریا درونت موج بزند،
+                <br>
+                و هر روز، لایه‌ای تازه از زیبایی جهان را کشف کنی.
+                <br>
+                تو برای من بسیار عزیز و ارزشمندی.
+                <br>
+                تولدت مبارک، از ته قلبم.
+            </div>
+            <div class="main-signature">
+                از طرف دوست نه چندان عزیزت،کامران ❤
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Button -->
+    <button class="music-btn" id="musicBtn" title="پخش/توقف موسیقی">
+        🎵
+    </button>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music/background.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ===== LOADING =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('fade-out');
+            }, 600);
+        });
+
+        // ===== AMBIENT PARTICLES =====
+        const particleCanvas = document.getElementById('particleCanvas');
+        const pCtx = particleCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeParticleCanvas() {
+            particleCanvas.width = window.innerWidth;
+            particleCanvas.height = window.innerHeight;
+        }
+        resizeParticleCanvas();
+        window.addEventListener('resize', resizeParticleCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * particleCanvas.width;
+                this.y = Math.random() * particleCanvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3 - 0.1;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.opacitySpeed = (Math.random() - 0.5) * 0.005;
+                this.color = ['255,215,0', '255,107,157', '200,80,192', '255,180,162'][Math.floor(Math.random() * 4)];
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity += this.opacitySpeed;
+                if (this.opacity <= 0.05 || this.opacity >= 0.6) this.opacitySpeed *= -1;
+                if (this.x < -10 || this.x > particleCanvas.width + 10 || this.y < -10 || this.y > particleCanvas.height + 10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                pCtx.beginPath();
+                pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                pCtx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                pCtx.fill();
+            }
+        }
+
+        for (let i = 0; i < 80; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ===== MUSIC CONTROL =====
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+            } else {
+                bgMusic.play().catch(() => {});
+                musicBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // ===== GLASS SHATTER EFFECT =====
+        const introPhase = document.getElementById('introPhase');
+        const introGlass = document.getElementById('introGlass');
+        const mainPhase = document.getElementById('mainPhase');
+        let hasClicked = false;
+
+        introPhase.addEventListener('click', (e) => {
+            if (hasClicked) return;
+            hasClicked = true;
+
+            // Try to play music on first click
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.classList.add('playing');
+                }).catch(() => {});
+            }
+
+            // Create ripple effect
+            createRipple(e.clientX, e.clientY);
+
+            // Get glass card position
+            const rect = introGlass.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+
+            // Create shards
+            createShards(rect);
+
+            // Create droplets from edges
+            createDroplets(rect);
+
+            // Hide intro phase
+            setTimeout(() => {
+                introPhase.classList.add('hidden');
+            }, 100);
+
+            // Show main phase
+            setTimeout(() => {
+                mainPhase.classList.add('visible');
+                // Burst confetti
+                launchConfetti();
+                // Spawn floating hearts
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => spawnHeart(), i * 300);
+                }
+            }, 600);
+
+            // Continuous hearts for a while
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => spawnHeart(), 2000 + i * 500);
+            }
+        });
+
+        function createRipple(x, y) {
+            const container = document.getElementById('rippleContainer');
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = (x - 0) + 'px';
+            ripple.style.top = (y - 0) + 'px';
+            ripple.style.marginLeft = '-0px';
+            ripple.style.marginTop = '-0px';
+            container.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 2000);
+        }
+
+        function createShards(rect) {
+            const cols = 8;
+            const rows = 5;
+            const shardW = rect.width / cols;
+            const shardH = rect.height / rows;
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const shard = document.createElement('div');
+                    shard.className = 'shard';
+                    shard.style.width = shardW + 'px';
+                    shard.style.height = shardH + 'px';
+                    shard.style.left = (rect.left + c * shardW) + 'px';
+                    shard.style.top = (rect.top + r * shardH) + 'px';
+                    shard.style.borderRadius = (Math.random() * 8 + 2) + 'px';
+
+                    const angle = Math.atan2(r - rows/2, c - cols/2);
+                    const dist = Math.random() * 300 + 100;
+                    const tx = Math.cos(angle) * dist + (Math.random() - 0.5) * 200;
+                    const ty = Math.sin(angle) * dist + Math.random() * 400 + 200;
+                    const rot = (Math.random() - 0.5) * 720;
+                    const duration = Math.random() * 1 + 1.5;
+
+                    shard.style.setProperty('--tx', tx + 'px');
+                    shard.style.setProperty('--ty', ty + 'px');
+                    shard.style.setProperty('--rot', rot + 'deg');
+                    shard.style.setProperty('--fall-duration', duration + 's');
+
+                    // Staggered delay based on distance from click center
+                    const delay = Math.sqrt(Math.pow(c - cols/2, 2) + Math.pow(r - rows/2, 2)) * 30;
+                    shard.style.animationDelay = delay + 'ms';
+
+                    document.body.appendChild(shard);
+                    setTimeout(() => shard.remove(), (duration + delay/1000) * 1000 + 500);
+                }
+            }
+        }
+
+        function createDroplets(rect) {
+            for (let i = 0; i < 20; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'droplet';
+                const side = Math.floor(Math.random() * 4);
+                let x, y;
+                if (side === 0) { x = rect.left + Math.random() * rect.width; y = rect.top + rect.height; }
+                else if (side === 1) { x = rect.left + Math.random() * rect.width; y = rect.top; }
+                else if (side === 2) { x = rect.left; y = rect.top + Math.random() * rect.height; }
+                else { x = rect.left + rect.width; y = rect.top + Math.random() * rect.height; }
+
+                drop.style.left = x + 'px';
+                drop.style.top = y + 'px';
+                drop.style.setProperty('--drip-y', (Math.random() * 500 + 300) + 'px');
+                drop.style.setProperty('--drip-duration', (Math.random() * 1.5 + 1.5) + 's');
+                drop.style.animationDelay = (Math.random() * 500) + 'ms';
+
+                document.body.appendChild(drop);
+                setTimeout(() => drop.remove(), 4000);
+            }
+        }
+
+        // ===== CONFETTI =====
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const cCtx = confettiCanvas.getContext('2d');
+        let confettiPieces = [];
+        let confettiActive = false;
+
+        function resizeConfettiCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        resizeConfettiCanvas();
+        window.addEventListener('resize', resizeConfettiCanvas);
+
+        class Confetti {
+            constructor() {
+                this.x = Math.random() * confettiCanvas.width;
+                this.y = -20 - Math.random() * 200;
+                this.w = Math.random() * 10 + 5;
+                this.h = Math.random() * 6 + 3;
+                this.color = ['#ffd700', '#ff6b9d', '#c850c0', '#ff4d6d', '#ffb4a2', '#9b59b6', '#fff'][Math.floor(Math.random() * 7)];
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.speedY = Math.random() * 3 + 2;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 10;
+                this.opacity = 1;
+                this.wobble = Math.random() * 10;
+                this.wobbleSpeed = Math.random() * 0.1 + 0.03;
+            }
+            update() {
+                this.x += this.speedX + Math.sin(this.wobble) * 0.5;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                this.wobble += this.wobbleSpeed;
+                this.speedY += 0.02;
+                if (this.y > confettiCanvas.height + 20) this.opacity = 0;
+            }
+            draw() {
+                if (this.opacity <= 0) return;
+                cCtx.save();
+                cCtx.translate(this.x, this.y);
+                cCtx.rotate((this.rotation * Math.PI) / 180);
+                cCtx.globalAlpha = this.opacity;
+                cCtx.fillStyle = this.color;
+                cCtx.fillRect(-this.w / 2, -this.h / 2, this.w, this.h);
+                cCtx.restore();
+            }
+        }
+
+        function launchConfetti() {
+            confettiActive = true;
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    confettiPieces.push(new Confetti());
+                }, Math.random() * 2000);
+            }
+            setTimeout(() => { confettiActive = false; }, 5000);
+        }
+
+        function animateConfetti() {
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettiPieces = confettiPieces.filter(c => c.opacity > 0);
+            confettiPieces.forEach(c => {
+                c.update();
+                c.draw();
+            });
+            requestAnimationFrame(animateConfetti);
+        }
+        animateConfetti();
+
+        // ===== FLOATING HEARTS =====
+        function spawnHeart() {
+            const hearts = ['❤', '💕', '✨', '💖', '🌸', '💜', '💛', '🦋'];
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = (Math.random() * 80 + 10) + 'vw';
+            heart.style.bottom = '10vh';
+            heart.style.fontSize = (Math.random() * 16 + 16) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4500);
+        }
+
+        // ===== MOUSE PARALLAX ON GLASS CARDS =====
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+            // Parallax background blobs
+            const blobs = document.querySelectorAll('.bg-blob');
+            blobs.forEach((blob, i) => {
+                const factor = (i + 1) * 3;
+                blob.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+
+        // ===== TOUCH SUPPORT FOR SHATTER =====
+        introPhase.addEventListener('touchstart', (e) => {
+            if (hasClicked) return;
+            const touch = e.touches[0];
+            const clickEvent = new MouseEvent('click', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            introPhase.dispatchEvent(clickEvent);
+        }, { passive: true });
+
+        // ===== SMOOTH SCROLL FOR MAIN PHASE ON MOBILE =====
+        mainPhase.addEventListener('touchmove', (e) => {
+            if (mainPhase.classList.contains('visible')) {
+                const scrollTop = mainPhase.scrollTop;
+                const scrollHeight = mainPhase.scrollHeight;
+                const clientHeight = mainPhase.clientHeight;
+
+                if (scrollTop + clientHeight >= scrollHeight - 10) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
